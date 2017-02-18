@@ -1,5 +1,5 @@
 # GitgraphEditor
-Editor for Gitgraph.js on web blowser.
+Editor for [Gitgraph.js](http://gitgraphjs.com/) on web blowser.
 
 ![introduction](./docs/image/introduction.gif)
 
