@@ -1,0 +1,99 @@
+@charset "UTF-8";
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#target {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 70%;
+  overflow: auto;
+}
+
+#bottom-area {
+  box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 30%;
+  background-color: #EEE;
+}
+
+#editor-area {
+  width: 40%;
+  height: 100%;
+  float: left;
+}
+
+#editor {
+  width: 95%;
+  height: 100%;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  resize: none;
+  float: left;
+  font-size: 13pt;
+  font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+}
+
+#option-area {
+  width: 60%;
+  height: 100%;
+  float: left;
+  overflow: auto;
+}
+
+label {
+  font-weight: bold;
+}
+
+h4 {
+  margin: 0px;
+}
+
+.option-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+fieldset {
+  width: 90%;
+}
+
+.short-input {
+  width: 45px;
+}
+
+.midium-input {
+  width: 80px;
+}
+
+.large-input {
+  width: 200px;
+}
+
+input {
+  font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+}
+
+#expand {
+  font-weight: normal;
+  color: #0045c7;
+  cursor: pointer;
+}
+
+#expand:hover {
+  color: #3e8aff;
+  text-decoration: underline;
+}
+
+#expand:active {
+  color: #002a6b;
+}

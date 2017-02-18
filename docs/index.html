@@ -1,0 +1,504 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>GitGraph Editor</title>
+    <link rel="stylesheet" href="./css/gitgraph.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="target"></div>
+    <div id="bottom-area">
+      <div id="editor-area">
+        <textarea id="editor"></textarea>
+      </div>
+      <div id="option-area">
+        <h4>Settings</h4>
+        <fieldset>
+          <legend>Panel size</legend>
+
+          <input type="radio" name="resizePanel" value="30" id="resizePanel_30" checked>
+          <label for="resizePanel_30">30%</label>
+
+          <input type="radio" name="resizePanel" value="50" id="resizePanel_50">
+          <label for="resizePanel_50">50%</label>
+
+          <input type="radio" name="resizePanel" value="80" id="resizePanel_80">
+          <label for="resizePanel_80">80%</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Base options</legend>
+
+          <div class="option-item">
+            <label for="option_base_template">template</label>
+            <select id="option_base_template">
+              <option value=""></option>
+              <option value="metro">metro</option>
+              <option value="blackarrow">blackarrow</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="option_base_reverseArrow">reverseArrow</label>
+            <select id="option_base_reverseArrow">
+              <option value=""></option>
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="option_base_orientation">orientation</label>
+            <select id="option_base_orientation">
+              <option value=""></option>
+              <option value="vertical">vertical</option>
+              <option value="vertical-reverse">vertical-reverse</option>
+              <option value="horizontal">horizontal</option>
+              <option value="horizontal-reverse">horizontal-reverse</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="option_base_mode">mode</label>
+            <select id="option_base_mode">
+              <option value=""></option>
+              <option value="compact">compact</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="option_base_author">author</label>
+            <input type="text" id="option_base_author" value="" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Template</legend>
+
+          <div class="option-item">
+            <label for="option_template_colors">colors</label>
+            <input type="text" id="option_template_colors" value=""
+                    size="50"
+                    placeholder="#6963FF, #47E8D4, #6BDB52, #E84BA5, #FFA657" />
+          </div>
+
+          <fieldset>
+            <legend>Arrow</legend>
+
+            <div class="option-item">
+              <label for="option_template_arrow_color">color</label>
+              <input type="text" id="option_template_arrow_color" class="midium-input" placeholder="#000" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_arrow_size">size</label>
+              <input type="number" id="option_template_arrow_size" min="1" class="short-input" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_arrow_offset">offset</label>
+              <input type="number" id="option_template_arrow_offset" min="1" class="short-input" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Branch</legend>
+
+            <div class="option-item">
+              <label for="option_template_branch_color">color</label>
+              <input type="text" id="option_template_branch_color" class="midium-input" placeholder="#000" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_branch_lineWidth">lineWidth</label>
+              <input type="number" id="option_template_branch_lineWidth" min="1" class="short-input" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_branch_mergeStyle">mergeStyle</label>
+              <select id="option_template_branch_mergeStyle">
+                <option value=""></option>
+                <option value="bezier">bezier</option>
+                <option value="straight">straight</option>
+              </select>
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_branch_spacingX">spacingX</label>
+              <input type="number" id="option_template_branch_spacingX" class="short-input" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_branch_spacingY">spacingY</label>
+              <input type="number" id="option_template_branch_spacingY" class="short-input" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_branch_showLabel">showLabel</label>
+              <select id="option_template_branch_showLabel">
+                <option value=""></option>
+                <option value="true">true</option>
+                <option value="false">false</option>
+              </select>
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_branch_labelColor">labelColor</label>
+              <input type="text" id="option_template_branch_labelColor" class="midium-input" placeholder="#000" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_branch_labelFont">labelFont</label>
+              <input type="text" id="option_template_branch_labelFont" class="large-input" placeholder="normal 8pt Calibri" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Commit</legend>
+
+            <div class="option-item">
+              <label for="option_template_commit_spacingX">spacingX</label>
+              <input type="number" id="option_template_commit_spacingX" class="short-input" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_commit_spacingY">spacingY</label>
+              <input type="number" id="option_template_commit_spacingY" class="short-input" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_commit_widthExtension">widthExtension</label>
+              <input type="number" id="option_template_commit_widthExtension" class="short-input" />
+            </div>
+
+            <div class="option-item">
+              <label for="option_template_commit_color">color</label>
+              <input type="text" id="option_template_commit_color" class="midium-input" placeholder="#000" />
+            </div>
+
+            <fieldset>
+              <legend>Dot</legend>
+
+              <div class="option-item">
+                <label for="option_template_commit_dot_color">color</label>
+                <input type="text" id="option_template_commit_dot_color" class="midium-input" placeholder="#000" />
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_dot_size">size</label>
+                <input type="number" id="option_template_commit_dot_size" class="short-input" />
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_dot_strokeWidth">strokeWidth</label>
+                <input type="number" id="option_template_commit_dot_strokeWidth" class="short-input" />
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_dot_strokeColor">strokeColor</label>
+                <input type="text" id="option_template_commit_dot_strokeColor" class="midium-input" placeholder="#000" />
+              </div>
+              
+            </fieldset>
+
+            <fieldset>
+              <legend>Message</legend>
+
+              <div class="option-item">
+                <label for="option_template_commit_message_color">color</label>
+                <input type="text" id="option_template_commit_message_color" class="midium-input" placeholder="#000" />
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_message_display">display</label>
+                <select id="option_template_commit_message_display">
+                  <option value=""></option>
+                  <option value="true">true</option>
+                  <option value="false">false</option>
+                </select>
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_message_displayAuthor">displayAuthor</label>
+                <select id="option_template_commit_message_displayAuthor">
+                  <option value=""></option>
+                  <option value="true">true</option>
+                  <option value="false">false</option>
+                </select>
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_message_displayBranch">displayBranch</label>
+                <select id="option_template_commit_message_displayBranch">
+                  <option value=""></option>
+                  <option value="true">true</option>
+                  <option value="false">false</option>
+                </select>
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_message_displayHash">displayHash</label>
+                <select id="option_template_commit_message_displayHash">
+                  <option value=""></option>
+                  <option value="true">true</option>
+                  <option value="false">false</option>
+                </select>
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_message_font">font</label>
+                <input type="text" id="option_template_commit_message_font" class="large-input" placeholder="normal 12pt Calibri" />
+              </div>
+
+              <div class="option-item">
+                <label for="option_template_commit_message_shouldDisplayTooltipsInCompactMode">shouldDisplayTooltipsInCompactMode</label>
+                <select id="option_template_commit_message_shouldDisplayTooltipsInCompactMode">
+                  <option value=""></option>
+                  <option value="true">true</option>
+                  <option value="false">false</option>
+                </select>
+              </div>
+            </fieldset>
+          </fieldset>
+        </fieldset>
+
+        <fieldset>
+          <legend>Branch options</legend>
+          <input type="text" id="newBranchName" /> <button id="addNewBranchOptionButton">add</button>
+          <div id="newBranchesTarget"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Commit options</legend>
+          <input type="text" id="newCommitName" /> <button id="addNewCommitOptionButton">add</button>
+          <div id="newCommitsTarget"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Storage</legend>
+          <button id="exportButton">export</button>
+          <button id="importButton">import</button>
+          <button id="clearButton">clear</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Libraries</legend>
+          <a href="http://gitgraphjs.com/" target="_brank">Gitgraph.js</a>
+          <a href="https://github.com/opengl-8080/gitgraphwrapper.js" target="_brank">gitgraphwrapper.js</a>
+        </fieldset>
+      </div>
+    </div>
+
+    <script id="newBranchOptionTemplate" type="text/html">
+      <fieldset>
+        <legend>${branchName}</legend>
+
+        <div class="option-item">
+          <label for="option_branch_${branchName}_column">column</label>
+          <input type="number" id="option_branch_${branchName}_column" min="0" class="short-input" />
+        </div>
+        
+        <div class="option-item">
+          <label for="option_branch_${branchName}_color">color</label>
+          <input type="text" id="option_branch_${branchName}_color" class="midium-input" placeholder="#000" />
+        </div>
+
+        <div class="option-item">
+          <label for="option_branch_${branchName}_lineWidth">lineWidth</label>
+          <input type="number" id="option_branch_${branchName}_lineWidth" class="short-input" />
+        </div>
+
+        <div class="option-item">
+          <label for="option_branch_${branchName}_showLabel">showLabel</label>
+          <select id="option_branch_${branchName}_showLabel">
+            <option value=""></option>
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </select>
+        </div>
+
+        <fieldset>
+          <legend>commitDefaultOptions</legend>
+          
+          <div class="option-item">
+            <label for="option_branch_${branchName}_commitDefaultOptions_color">color</label>
+            <input type="text" id="option_branch_${branchName}_commitDefaultOptions_color" class="midium-input" placeholder="#000" />
+          </div>
+          
+          <div class="option-item">
+            <label for="option_branch_${branchName}_commitDefaultOptions_messageColor">messageColor</label>
+            <input type="text" id="option_branch_${branchName}_commitDefaultOptions_messageColor" class="midium-input" placeholder="#000" />
+          </div>
+          
+          <div class="option-item">
+            <label for="option_branch_${branchName}_commitDefaultOptions_labelColor">labelColor</label>
+            <input type="text" id="option_branch_${branchName}_commitDefaultOptions_labelColor" class="midium-input" placeholder="#000" />
+          </div>
+          
+          <div class="option-item">
+            <label for="option_branch_${branchName}_commitDefaultOptions_dotColor">dotColor</label>
+            <input type="text" id="option_branch_${branchName}_commitDefaultOptions_dotColor" class="midium-input" placeholder="#000" />
+          </div>
+        </fieldset>
+        <button id="${branchName}_remove">remove</button>
+      </fieldset>
+    </script>
+
+    <script id="newCommitOptionTemplate" type="text/html">
+      <fieldset>
+        <legend>${commitName}</legend>
+          
+        <div class="option-item">
+          <label for="option_commit_${commitName}_color">color</label>
+          <input type="text" id="option_commit_${commitName}_color" class="midium-input" placeholder="#000" />
+        </div>
+
+        <div class="option-item">
+          <label for="option_commit_${commitName}_author">author</label>
+          <input type="text" id="option_commit_${commitName}_author" />
+        </div>
+
+        <div class="option-item">
+          <label for="option_commit_${commitName}_sha1">sha1</label>
+          <input type="text" id="option_commit_${commitName}_sha1" />
+        </div>
+
+        <div class="option-item">
+          <label for="option_commit_${commitName}_tooltipDisplay">tooltipDisplay</label>
+          <select id="option_commit_${commitName}_tooltipDisplay">
+            <option value=""></option>
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </select>
+        </div>
+
+        <fieldset>
+          <legend>Tag</legend>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_tag">tag</label>
+            <input type="text" id="option_commit_${commitName}_tag" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_tagColor">tagColor</label>
+            <input type="text" id="option_commit_${commitName}_tagColor" class="midium-input" placeholder="#000" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_tagFont">tagFont</label>
+            <input type="text" id="option_commit_${commitName}_tagFont" class="large-input" placeholder="normal 12pt Calibri" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_displayTagBox">displayTagBox</label>
+            <select id="option_commit_${commitName}_displayTagBox">
+              <option value=""></option>
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Dot</legend>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_dotColor">dotColor</label>
+            <input type="text" id="option_commit_${commitName}_dotColor" class="midium-input" placeholder="#000" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_dotSize">dotSize</label>
+            <input type="number" id="option_commit_${commitName}_dotSize" class="short-input" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_dotStrokeWidth">dotStrokeWidth</label>
+            <input type="number" id="option_commit_${commitName}_dotStrokeWidth" class="short-input" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_dotStrokeColor">dotStrokeColor</label>
+            <input type="text" id="option_commit_${commitName}_dotStrokeColor" class="midium-input" placeholder="#000" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Message</legend>
+          
+          <div class="option-item">
+            <label for="option_commit_${commitName}_message">message</label>
+            <input type="text" id="option_commit_${commitName}_message" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_messageColor">messageColor</label>
+            <input type="text" id="option_commit_${commitName}_messageColor" class="midium-input" placeholder="#000" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_messageFont">messageFont</label>
+            <input type="text" id="option_commit_${commitName}_messageFont" class="large-input" placeholder="normal 12pt Calibri" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_messageDisplay">messageDisplay</label>
+            <select id="option_commit_${commitName}_messageDisplay">
+              <option value=""></option>
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_messageAuthorDisplay">messageAuthorDisplay</label>
+            <select id="option_commit_${commitName}_messageAuthorDisplay">
+              <option value=""></option>
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_messageBranchDisplay">messageBranchDisplay</label>
+            <select id="option_commit_${commitName}_messageBranchDisplay">
+              <option value=""></option>
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_messageHashDisplay">messageHashDisplay</label>
+            <select id="option_commit_${commitName}_messageHashDisplay">
+              <option value=""></option>
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Label</legend>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_labelColor">labelColor</label>
+            <input type="text" id="option_commit_${commitName}_labelColor" class="midium-input" placeholder="#000" />
+          </div>
+
+          <div class="option-item">
+            <label for="option_commit_${commitName}_labelFont">labelFont</label>
+            <input type="text" id="option_commit_${commitName}_labelFont" class="large-input" placeholder="normal 12pt Calibri" />
+          </div>
+        </fieldset>
+
+        <button id="${commitName}_remove">remove</button>
+      </fieldset>
+    </script>
+    <script src="./js/gitgraph.min.js"></script>
+    <script src="./js/gitgraphwrapper.min.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
