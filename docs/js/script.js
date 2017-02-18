@@ -666,6 +666,8 @@
 
       if (_method === 'commit') {
         args = _resolveCommitOption(gitGraphOption, args);
+      } else if (_method === 'merge') {
+        args = _resolveMergeCommitOption(gitGraphOption, args);
       }
 
       try {
@@ -686,6 +688,22 @@
         var commitName = result[1];
         var commitOption = gitGraphOption.getCommitOption(commitName);
         return commitOption ? [commitOption] : args;
+      } else {
+        return args;
+      }
+    }
+
+    function _resolveMergeCommitOption(gitGraphOption, args) {
+      if (args.length < 2) {
+        return args;
+      }
+
+      var result = /^\$([^\s]+)$/.exec(args[1]);
+
+      if (result) {
+        var commitName = result[1];
+        var commitOption = gitGraphOption.getCommitOption(commitName);
+        return commitOption ? [args[0], commitOption] : args;
       } else {
         return args;
       }
