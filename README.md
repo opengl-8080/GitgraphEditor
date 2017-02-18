@@ -260,7 +260,7 @@ HEAD は作成されたブランチに移動します。
 
 ## Release Note
 ### 英語
-- v1.0 first release
+- v1.0.0 first release
 
 ### 日本語
-- v1.0 初回リリース
+- v1.0.0 初回リリース
